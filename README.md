@@ -2,8 +2,8 @@
 
 * 日本医療統計のテキストを整形し入力しやすくするパッケージ
 * 完全に私用です
-
-使用方法 : ``` JapMedStat druglistutf8.txt ```
+* あらかじめ　```nkf -u druglisting.txt >druglistutf8.txt``` としておく
+* 使用方法 :  ```JapMedStat druglistutf8.txt ```
 
 txtの形式
 

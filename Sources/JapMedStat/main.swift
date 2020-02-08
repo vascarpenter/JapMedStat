@@ -1,4 +1,8 @@
 // 日本医療統計のテキストを整形し入力しやすくするパッケージ
+//
+// あらかじめ nkf -u druglisting.txt >druglistutf8.txt
+//
+// .build/x86_64-apple-macosx/debug/JapMedStat druglistutf8.txt
 
 import Cocoa
 
@@ -89,10 +93,10 @@ let ddef: [[String]] =
         ["塩化ナトリウム", "0907"],
         ["フェロ・グラデュメット", "1204"],
         ["ツロブテロールテープ", "8102"],
-        ["", "0"],
     ]
 
-// https://qiita.com/KikurageChan/items/807e84e3fa68bb9c4de6
+// https://qiita.com/KikurageChan/items/807e84e3fa68bb9c4de6 からのコピペです
+
 extension String {
     // 絵文字など(2文字分)も含めた文字数を返します
     var length: Int
