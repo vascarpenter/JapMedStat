@@ -1,0 +1,6 @@
+--trimwhitespace nonblank-lines
+--stripunusedargs closure-only
+--disable strongOutlets,trailingCommas
+--allman true
+
+

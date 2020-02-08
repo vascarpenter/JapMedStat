@@ -1,0 +1,8 @@
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
+xcuserdata/
+d*.txt
+*.pl
+*.code-workspace
