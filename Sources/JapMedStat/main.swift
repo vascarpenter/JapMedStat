@@ -81,6 +81,8 @@ let ddef: [[String]] =
         ["アロプリノール", "6409"],
         ["フェブリク", "6409"],
         ["カルボシステイン", "8301"],
+        ["アスベリン","8301"],
+        ["カルボシステインＤＳ", "8301"],
         ["トピロリック", "6409"],
         ["トリアゾラム", "7304"],
         ["ブロチゾラム", "7304"],
@@ -93,6 +95,22 @@ let ddef: [[String]] =
         ["塩化ナトリウム", "0907"],
         ["フェロ・グラデュメット", "1204"],
         ["ツロブテロールテープ", "8102"],
+        ["アンヒバ", "7102"],
+        ["ボルタレン", "7102"],
+        ["カロナール", "7102"],
+        ["ロキソニン", "7102"],
+        ["リレンザ", "5302"],
+        ["タミフル", "5302"],
+        ["タミフルドライシロップ", "5302"],
+        ["マーズレンＳ", "0035"],
+        ["ＰＬ", "7145"],
+        ["ポピヨドンガーグル","5501"],
+        ["ＳＰトローチ","9132"],
+        ["ジクロフェナクナトリウムテープ","7139"],
+        ["フロモックス","5101"],
+        ["ベタヒスチンメシル酸塩","0219"],
+        ["ドンペリドン","0202"],
+        
     ]
 
 // https://qiita.com/KikurageChan/items/807e84e3fa68bb9c4de6 からのコピペです
@@ -184,7 +202,7 @@ if let text = try? String(contentsOfFile: fileName, encoding: String.Encoding.ut
                 abstr = abstr + linex + "\n"
             }
         }
-        else if line.pregMatche(pattern: "^([1-9][0-9])y([0-9]+)m(.*)$",
+        else if line.pregMatche(pattern: "^([0-9]+)y([0-9]+)m(.*)$",
                                 options: NSRegularExpression.Options.anchorsMatchLines,
                                 matches: &ans)
         {
@@ -204,6 +222,9 @@ if let text = try? String(contentsOfFile: fileName, encoding: String.Encoding.ut
         {
             var liney = linex
             if liney.contains("錠") ||
+                liney.contains("坐剤") ||
+                liney.contains("ガーグル") ||
+                liney.contains("シロップ") ||
                 liney.contains("cap") ||
                 liney.contains("mL") ||
                 liney.contains("個") ||
@@ -215,15 +236,21 @@ if let text = try? String(contentsOfFile: fileName, encoding: String.Encoding.ut
                 liney.contains("注")
             {
                 liney = liney.pregReplace(pattern: "（.*）", with: "")
-                if liney.pregMatche(pattern: "([ァ-ンー塩化酸・]+)(.*)", matches: &ans)
+                if liney.pregMatche(pattern: "([ァ-ンＡ-Ｚー塩化酸・]+)(.*)", matches: &ans)
                 {
+                    var match: Bool = false
                     for ds in ddef
                     {
                         if ds[0] == ans[1]
                         {
                             dbstr = dbstr + liney + "  " + ds[1] + "\n"
+                            match = true
                             break
                         }
+                    }
+                    if !match
+                    {
+                        dbstr = dbstr + liney + "  ?\(ans[1])?\n"
                     }
                 }
             }
