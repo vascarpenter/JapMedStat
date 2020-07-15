@@ -2,8 +2,10 @@
 
 * 日本医療統計のテキストを整形し入力しやすくするパッケージ
 * 完全に私用です
+* MySQLで japmedstat テーブルを作っておきます (SQL参照)
 * あらかじめ　```nkf -u druglisting.txt >druglistutf8.txt``` としておく
 * 使用方法 :  ```JapMedStat druglistutf8.txt ```
+* ビルド : ```swift build [<-c release>]```
 
 txtの形式
 
@@ -28,3 +30,5 @@ A)  <-- 空行とA)は無視してよい
 ```
 
 に整形しなおすスクリプトです
+
+データベースへアクセスしにいくように変更（単なる趣味..）
